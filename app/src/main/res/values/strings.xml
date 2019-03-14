@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RSSI_Measure</string>
+    <string name="X">坐标 X:</string>
+    <string name="Y">Y:</string>
+    <string name="times">次数:</string>
+    <string name="start">开始</string>
+    <string name="delete">删除所有数据</string>
+    <string name="remaining_times">剩余次数:</string>
+    <string name="ready">准备就绪！！！</string>
+</resources>

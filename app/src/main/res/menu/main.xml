@@ -1,0 +1,8 @@
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/action_export"
+        android:title="导出"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+</menu>
