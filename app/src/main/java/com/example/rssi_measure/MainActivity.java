@@ -310,6 +310,12 @@ public class MainActivity extends AppCompatActivity {
                         if(remaining_times_a > 0){
 
                             jxl.write.Number num_a = new Number(0,total_times-remaining_times_a+1,rssi);
+
+                            Message msg =Message.obtain();
+                            msg.what = 4;
+                            msg.obj = "A7F3第"+(total_times-remaining_times_a+1)+"次:"+rssi+"///";
+                            myHanlder.sendMessage(msg);
+
                             try {
                                 sheet.addCell(num_a);
                             } catch (WriteException e) {
@@ -338,6 +344,12 @@ public class MainActivity extends AppCompatActivity {
                     if(remaining_times_b > 0){
 
                         jxl.write.Number num_b = new Number(1,total_times-remaining_times_b+1,rssi);
+
+                        Message msg =Message.obtain();
+                        msg.what = 4;
+                        msg.obj = "ADD7第"+(total_times-remaining_times_b+1)+"次:"+rssi+"///";
+                        myHanlder.sendMessage(msg);
+
                         try {
                             sheet.addCell(num_b);
                         } catch (WriteException e) {
@@ -367,6 +379,12 @@ public class MainActivity extends AppCompatActivity {
                     if(remaining_times_c > 0){
 
                         jxl.write.Number num_c = new Number(2,total_times-remaining_times_c+1,rssi);
+
+                        Message msg =Message.obtain();
+                        msg.what = 4;
+                        msg.obj = "AD9F第"+(total_times-remaining_times_c+1)+"次:"+rssi+"///";
+                        myHanlder.sendMessage(msg);
+
                         try {
                             sheet.addCell(num_c);
                         } catch (WriteException e) {
@@ -394,6 +412,12 @@ public class MainActivity extends AppCompatActivity {
                     if(remaining_times_d > 0){
 
                         jxl.write.Number num_d = new Number(3,total_times-remaining_times_d+1,rssi);
+
+                        Message msg =Message.obtain();
+                        msg.what = 4;
+                        msg.obj = "7D19第"+(total_times-remaining_times_d+1)+"次:"+rssi+"///";
+                        myHanlder.sendMessage(msg);
+
                         try {
                             sheet.addCell(num_d);
                         } catch (WriteException e) {
@@ -469,6 +493,8 @@ public class MainActivity extends AppCompatActivity {
                     tv_data.setText("测试结束");
                     break;
 
+                case 4:
+                    tv_data.append(msg.obj+"");
             }
         }
     }
