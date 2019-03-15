@@ -22,7 +22,8 @@
             android:layout_height="40sp"
             android:id="@+id/edit_x"
             android:background="@drawable/edit_background"
-            tools:ignore="Autofill,LabelFor,TextFields" />
+            tools:ignore="Autofill,LabelFor,TextFields"
+            android:inputType="number"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,7 +37,8 @@
             android:layout_height="40sp"
             android:id="@+id/edit_y"
             android:background="@drawable/edit_background"
-            tools:ignore="Autofill,LabelFor,TextFields" />
+            tools:ignore="Autofill,LabelFor,TextFields"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -49,6 +51,7 @@
             android:layout_height="wrap_content"
             android:text="@string/times"
             android:textSize="30sp"
+            android:inputType="number"
             />
 
         <EditText
@@ -57,7 +60,8 @@
             android:layout_marginStart="30sp"
             android:id="@+id/edit_times"
             android:background="@drawable/edit_background"
-            tools:ignore="Autofill,LabelFor,TextFields" />
+            tools:ignore="Autofill,LabelFor,TextFields"
+            android:inputType="number"/>
 
     </LinearLayout>
 
@@ -105,7 +109,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/edit_text"
+        android:id="@+id/tv_data"
         android:text="@string/ready"
         android:background="@drawable/edit_background"
         android:scrollbars="vertical"
