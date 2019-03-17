@@ -22,6 +22,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,13 +72,6 @@ public class MainActivity extends AppCompatActivity {
     BluetoothAdapter mBluetoothAdapter;
     private static final int request_enabled = 1;//定义一个int resultCode
 
-
-    private static int i1 = 0;
-    private static int i2 = 0;
-    private static int i3 = 0;
-    private static int i4 = 0;
-
-
     private static String TAG = "Test";
     ImageView imageView;
     TextView tv_times,tv_data;
@@ -89,10 +83,7 @@ public class MainActivity extends AppCompatActivity {
     private static String x,y;
     private static int remaining_times_a,remaining_times_b,remaining_times_c,remaining_times_d,total_times,remaining_times;
     File file;
-    jxl.write.Label id1 = new jxl.write.Label(0,0,"ADD7");
-    jxl.write.Label id2 = new jxl.write.Label(1,0,"A7F3");
-    jxl.write.Label id3 = new jxl.write.Label(2,0,"AD9F");
-    jxl.write.Label id4 = new jxl.write.Label(3,0,"7D19");
+
 
 
 
@@ -129,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         edit_times = findViewById(id.edit_times);
         tv_times = findViewById(id.tv_remaining_times);
         tv_data = findViewById(id.tv_data);
+        tv_data.setMovementMethod(new ScrollingMovementMethod());
         btn_start = findViewById(id.btn_start);
         btn_delete = findViewById(id.btn_delete);
         btn_start.setOnClickListener(new View.OnClickListener() {
@@ -177,7 +169,9 @@ public class MainActivity extends AppCompatActivity {
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Message msg = Message.obtain();
+                msg.what = 5;
+                myHanlder.sendMessage(msg);
             }
         });
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -210,6 +204,12 @@ public class MainActivity extends AppCompatActivity {
             //创建sheet
             sheet = wwb.createSheet("RSSI_measure", 1);
             Log.i(TAG, "export: 3");
+
+            jxl.write.Label id1 = new jxl.write.Label(0,0,"A7F3");
+            jxl.write.Label id2 = new jxl.write.Label(1,0,"ADD7");
+            jxl.write.Label id3 = new jxl.write.Label(2,0,"AD9F");
+            jxl.write.Label id4 = new jxl.write.Label(3,0,"7D19");
+
             sheet.addCell(id1);
             sheet.addCell(id2);
             sheet.addCell(id3);
@@ -294,19 +294,12 @@ public class MainActivity extends AppCompatActivity {
     private BluetoothAdapter.LeScanCallback mLeScanCallback = new BluetoothAdapter.LeScanCallback() {
         @Override
         public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
-            String dataPacket = str2HexStr(scanRecord);
 
-            String txPower;
-            int intTxPower;
             /*
               发现A7F3
               */
             if (device.getAddress().equals(mAdress_A7F3)  ){
-                txPower = dataPacket.substring(87,89);
-                intTxPower = txPowerTransfer(txPower , "A7F3");
-                if( intTxPower < 0) {
 
-                        //Log.i(TAG, "onLeScan: A7F3:getRSSI" + rssi);
                         if(remaining_times_a > 0){
 
                             jxl.write.Number num_a = new Number(0,total_times-remaining_times_a+1,rssi);
@@ -325,19 +318,19 @@ public class MainActivity extends AppCompatActivity {
                             remaining_times_a--;
                         }
 
-                }
+/*                }
                 else{
                     Log.d(TAG, "onLeScan: 发现A7F3，无效数据包:" + dataPacket);
-                }
+                }*/
             }
 
             /*
              发现ADD7
               */
             if(device.getAddress().equals(mAdress_ADD7)){
-                txPower = dataPacket.substring(87,89);
+/*                txPower = dataPacket.substring(87,89);
                 intTxPower = txPowerTransfer(txPower , "ADD7");
-                if( intTxPower < 0 ) {
+                if( intTxPower < 0 ) {*/
                    // if(i2++ < 20)
                        // Log.i(TAG, "onLeScan: ADD7:getRSSI" + rssi);
 
@@ -359,20 +352,20 @@ public class MainActivity extends AppCompatActivity {
                         remaining_times_b--;
                     }
 
-
+/*
                 }
                 else{
                     Log.d(TAG, "onLeScan: 发现ADD7，无效数据包:" + dataPacket);
-                }
+                }*/
             }
 
             /*
              发现AD9F
               */
             if(device.getAddress().equals(mAdress_AD9F)){
-                txPower = dataPacket.substring(87,89);
+/*                txPower = dataPacket.substring(87,89);
                 intTxPower = txPowerTransfer(txPower , "AD9F");
-                if( intTxPower < 0 ) {
+                if( intTxPower < 0 ) {*/
                    // if(i3++ < 20)
                        // Log.i(TAG, "onLeScan: AD9F:getRSSI" + rssi);
 
@@ -394,10 +387,10 @@ public class MainActivity extends AppCompatActivity {
                         remaining_times_c--;
                     }
 
-                }
+/*                }
                 else{
-                    Log.d(TAG, "onLeScan: 发现AD9F，无效数据包:" + dataPacket);
-                }
+                Log.d(TAG, "onLeScan: 发现AD9F，无效数据包:" + dataPacket);
+            }*/
 
             }
 
@@ -405,9 +398,9 @@ public class MainActivity extends AppCompatActivity {
              发现7D19
               */
             if(device.getAddress().equals(mAdress_7D19)){
-                txPower = dataPacket.substring(87,89);
+/*                txPower = dataPacket.substring(87,89);
                 intTxPower = txPowerTransfer(txPower , "7D19");
-                if( intTxPower < 0 ) {
+                if( intTxPower < 0 ) {*/
 
                     if(remaining_times_d > 0){
 
@@ -427,10 +420,10 @@ public class MainActivity extends AppCompatActivity {
                         remaining_times_d--;
                     }
 
-                }
+/*                }
                 else{
                     Log.d(TAG, "onLeScan: 发现7D19，无效数据包:" + dataPacket);
-                }
+                }*/
             }
             if(remaining_times>remaining_times_a && remaining_times>remaining_times_b && remaining_times>remaining_times_c
             && remaining_times>remaining_times_d)
@@ -490,11 +483,15 @@ public class MainActivity extends AppCompatActivity {
 
                 case 3:
                     imageView.setImageDrawable(ContextCompat.getDrawable(MainActivity.this, drawable.redpoint));
-                    tv_data.setText("测试结束");
+                    tv_data.append("测试结束");
                     break;
 
                 case 4:
                     tv_data.append(msg.obj+"");
+                    break;
+                case 5:
+                    tv_data.setText("");
+                    break;
             }
         }
     }
