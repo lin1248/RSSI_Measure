@@ -55,7 +55,7 @@ import static com.example.rssi_measure.Address.mAdress_ADD7;
 import static com.example.rssi_measure.R.*;
 
 public class MainActivity extends AppCompatActivity {
-
+    //测试Android studio上传github
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
             permission.WRITE_EXTERNAL_STORAGE,
